@@ -9,6 +9,7 @@ use App\Models\Review;
 use App\Models\Rating;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::create([
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+        ]);
+        User::create([
+            'username' => 'user',
+            'email' => 'user@user.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
+        ]);
+
         User::factory()
             ->count(5)
             ->has(

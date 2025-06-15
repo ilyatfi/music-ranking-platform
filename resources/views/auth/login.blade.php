@@ -1,23 +1,22 @@
-<x-layout title="Login">
-    <h2>Login</h2>
-    <form method="POST" action="{{ route('login') }}">
+<x-layout>
+    <x-slot name="title">{{ __('Login') }}</x-slot>
+
+    <h2>{{ __('Login') }}</h2>
+
+    <form action="{{ route('login') }}" method="POST">
         @csrf
-        <label for="username" >Username:</label>
-        <input id="username" type="text" name="username" required value="{{ old('username') }}"><br>
-
-        <label for="password">Password:</label>
-        <input id="password" type="password" name="password" required><br>
-
-        <button type="submit">Login</button>
-    </form>
-    @if ($errors->any())
-        <div class="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+        <div class="mb-3">
+            <label for="username">{{ __('Username') }}</label>
+            <input id="username" type="text" name="username" class="form-control" required value="{{ old('username') }}">
         </div>
-    @endif
-    <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
+        <div class="mb-3">
+            <label for="password">{{ __('Password') }}</label>
+            <input id="password" type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+    </form>
+
+    <div class="mt-3">
+        <p>{{ __('Dont have an account?') }} <a href="{{ route('register') }}">{{ __('Register here') }}</a>.</p>
+    </div>
 </x-layout>

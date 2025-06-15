@@ -1,41 +1,45 @@
-<nav class="navbar">
-    <a href="{{ route('artists.index') }}">Home</a>
-    <ul>
-        <li class="nav-item">
-            @foreach($available_locales as $locale_name => $available_locale)
-                @if($available_locale === $current_locale)
-                    <span>{{ $locale_name }}</span>
-                @else
-                    <a href="{{ route('locale.switch',  $available_locale) }}">
-                        <span>{{ $locale_name }}</span>
-                    </a>
-                @endif
-            @endforeach
-        </li>
-        @auth
-            <li class="nav-item">
-                <a href="{{ route('users.index') }}">Profile</a>
-            </li>
-            @if (auth()->user()->isAdmin())
-                <li class="nav-item">
-                    <a href="{{ route('admin.index') }}">Admin Panel</a>
-                </li>
-            @endif
-            <li class="nav-item">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn">Logout</button>
-                </form>
-            </li>
-        @endauth
+@props(['search' => ''])
 
-        @guest
+<nav class="bg-light py-3 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        {{-- Left: Logo and Search --}}
+        <div class="d-flex align-items-center flex-grow-1">
+            <a href="{{ route('artists.index') }}" class="me-3">
+                <img src="{{ asset('logo.png') }}" alt="MusicRank Logo" style="height: 40px;">
+            </a>
+
+            <form method="GET" action="{{ route('artists.index') }}" class="flex-grow-1 me-3">
+                <div class="input-group">
+                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search artists or albums...">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {{-- Right: Language + Account --}}
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-dark me-3">EN <i class="bi bi-caret-down-fill"></i></button>
             <li class="nav-item">
-                <a href="{{ route('login') }}">Login</a>
+                @foreach($available_locales as $locale_name => $available_locale)
+                    @if($available_locale === $current_locale)
+                        <span>{{ $locale_name }}</span>
+                    @else
+                        <a href="{{ route('locale.switch',  $available_locale) }}">
+                            <span>{{ $locale_name }}</span>
+                        </a>
+                    @endif
+                @endforeach
             </li>
-            <li class="nav-item">
-                <a href="{{ route('register') }}">Register</a>
-            </li>
-        @endguest
-    </ul>
+
+            @auth
+                <div class="me-2">{{ auth()->user()->username }}</div>
+                <div class="rounded-circle border" style="width: 40px; height: 40px; background-color: #ccc;"></div>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary me-2">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-sm btn-outline-success">Register</a>
+            @endauth
+        </div>
+    </div>
 </nav>

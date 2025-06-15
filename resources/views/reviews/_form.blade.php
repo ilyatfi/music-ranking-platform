@@ -2,7 +2,7 @@
     @csrf
 
     <div class="mb-3">
-        <label for="content" class="form-label">Your Review</label>
+        <label for="content" class="form-label">{{ __('Your Review') }}</label>
         <textarea name="content" id="content" rows="4"
                   class="form-control @error('content') is-invalid @enderror"
                   required>{{ old('content') }}</textarea>
@@ -14,7 +14,7 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit Review</button>
+    <button type="submit" class="btn btn-primary">{{ __('Submit Review') }}</button>
 
     @if ($errors->any())
         <div class="alert alert-danger mt-3">

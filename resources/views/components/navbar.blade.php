@@ -10,7 +10,7 @@
 
             <form method="GET" action="{{ route('artists.index') }}" class="flex-grow-1 me-3">
                 <div class="input-group">
-                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search artists...">
+                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="{{ __('Search artists') }}...">
                     <button class="btn btn-outline-secondary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
@@ -45,15 +45,15 @@
                         <div class="rounded-circle border" style="width: 40px; height: 40px; background-color: #ccc;"></div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountMenu">
-                        <li><a class="dropdown-item" href="{{ route('users.index') }}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.index') }}">{{ __('My Profile') }}</a></li>
                         @if(auth()->user()->isAdmin())
-                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">Admin Panel</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Admin Panel') }}</a></li>
                         @endif
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button class="dropdown-item text-danger">Logout</button>
+                                <button class="dropdown-item text-danger">{{ __('Logout') }}</button>
                             </form>
                         </li>
                     </ul>

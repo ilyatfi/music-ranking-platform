@@ -1,11 +1,11 @@
 <x-layout title="Profile">
     <div class="container">
 
-        <h2 class="mb-4">Profile: {{ $user->username }}</h2>
+        <h2 class="mb-4">{{ __('Profile') }}: {{ $user->username }}</h2>
 
         {{-- Reviews Section --}}
         <div class="mb-5">
-            <h4 class="mb-3">Your Reviews</h4>
+            <h4 class="mb-3">{{ __('Your Reviews') }}</h4>
 
             @forelse ($user->reviews as $review)
                 <div class="card mb-3 shadow-sm">
@@ -19,13 +19,13 @@
                     </div>
                 </div>
             @empty
-                <p class="text-muted">You haven't written any reviews yet.</p>
+                <p class="text-muted">{{ __('You havent written any reviews yet.') }}</p>
             @endforelse
         </div>
 
         {{-- Ratings Section --}}
         <div class="mb-5">
-            <h4 class="mb-3">Your Ratings</h4>
+            <h4 class="mb-3">{{ __('Your Ratings') }}</h4>
 
             @forelse ($user->ratings as $rating)
                 <div class="card mb-2 shadow-sm">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-muted">You haven't rated any albums yet.</p>
+                <p class="text-muted">{{ __('You havent rated any albums yet.') }}</p>
             @endforelse
         </div>
 

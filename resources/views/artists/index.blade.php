@@ -1,7 +1,7 @@
 <x-layout>
-    <x-slot name="title">Artists</x-slot>
+    <x-slot name="title">{{ __('Artists') }}</x-slot>
 
-    {{-- Featured Artist Blocks --}}
+    {{-- Featured Artists --}}
     <div class="mb-5">
         @foreach ($artists->take(2) as $artist)
             <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-dark">
@@ -16,7 +16,7 @@
         @endforeach
     </div>
 
-    {{-- Circular Artist Grid --}}
+    {{-- Artist Grid --}}
     <div class="d-flex justify-content-start flex-wrap gap-4 mb-5">
         @foreach ($artists->slice(2, 8) as $artist)
             <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-center text-dark">

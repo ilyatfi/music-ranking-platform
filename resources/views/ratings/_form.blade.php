@@ -11,7 +11,7 @@
     <input type="hidden" name="album_id" value="{{ $album->id }}">
 
     <div class="mb-3">
-        <label for="score" class="form-label">Your Rating (1–10):</label>
+        <label for="score" class="form-label">{{ __('Your Rating') }} (1–10):</label>
         <div class="input-group">
             <input type="number" name="score" id="score"
                    class="form-control @error('score') is-invalid @enderror"
@@ -20,7 +20,7 @@
                    style="max-width: 100px;" required>
 
             <button type="submit" class="btn btn-primary">
-                {{ $userRating ? 'Update Rating' : 'Submit Rating' }}
+                {{ $userRating ? __('Update Rating') : __('Submit Rating') }}
             </button>
         </div>
 

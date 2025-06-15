@@ -16,32 +16,15 @@
         @endforeach
     </div>
 
-    @php
-        $otherRows = intdiv($artists->count()-3,6) * 6;
-    @endphp
-
     {{-- Artist Grid --}}
-    @if($artists->count() > 8)
-        @foreach (range(0, $otherRows) as $i)
-            <div class="d-flex justify-content-between flex-wrap px-3">
-                @foreach ($artists->slice(2 + $otherRows*6, 6) as $artist)
-                    <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-center text-dark artist-item">
-                        <div class="rounded-circle mx-auto border" style="width: 100px; height: 100px; background-color: #f0f0f0;"></div>
-                        <div class="mt-3 h6">{{ $artist->stage_name }}</div>
-                    </a>
-                @endforeach
-            </div>
-        @endforeach
-    @endif
-    @if($artists->count() > 2)
-        <div class="d-flex justify-content-between flex-wrap px-3">
-            @foreach ($artists->slice(2 + $otherRows, 6) as $artist)
-                <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-center text-dark artist-item">
+    <div class="row">
+        @foreach ($artists->slice(2) as $artist)
+            <div class="col-6 col-md-4 col-lg-2 mb-4 text-center">
+                <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-dark artist-item">
                     <div class="rounded-circle mx-auto border" style="width: 100px; height: 100px; background-color: #f0f0f0;"></div>
                     <div class="mt-3 h6">{{ $artist->stage_name }}</div>
                 </a>
-            @endforeach
-        </div>
-    @endif
-
+            </div>
+        @endforeach
+    </div>
 </x-layout>

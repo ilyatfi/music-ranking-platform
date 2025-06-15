@@ -1,5 +1,5 @@
 <x-layout title="Create Artist">
-    <h2>Create New Artist</h2>
+    <h2>{{ __('Create New Artist') }}</h2>
 
     @if (session('success'))
         <div>{{ session('success') }}</div>
@@ -21,7 +21,7 @@
         <label>Bio:</label>
         <textarea name="bio"></textarea>
 
-        <button type="submit">Create Artist</button>
+        <button type="submit">{{ __('Create Artist') }}</button>
     </form>
     @if ($errors->any())
         <div>

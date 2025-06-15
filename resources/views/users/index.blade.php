@@ -1,21 +1,45 @@
 <x-layout title="Profile">
     <div class="container">
-        <h2>Your Profile: {{ $user->name }}</h2>
 
-        <h4>Your Reviews</h4>
-        <ul>
-            @foreach ($user->reviews as $review)
-                <li>
-                    <strong>{{ $review->album->title }}</strong>: {{ $review->content }}
-                </li>
-            @endforeach
-        </ul>
+        <h2 class="mb-4">Profile: {{ $user->username }}</h2>
 
-        <h4>Your Ratings</h4>
-        <ul>
-            @foreach ($user->ratings as $rating)
-                <li>{{ $rating->album->title }} — {{ $rating->score }}/10</li>
-            @endforeach
-        </ul>
+        {{-- Reviews Section --}}
+        <div class="mb-5">
+            <h4 class="mb-3">Your Reviews</h4>
+
+            @forelse ($user->reviews as $review)
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">
+                            <a href="{{ route('albums.show', $review->album) }}" class="text-decoration-none text-dark">
+                                {{ $review->album->title }}
+                            </a>
+                        </h5>
+                        <p class="card-text">{{ $review->content }}</p>
+                    </div>
+                </div>
+            @empty
+                <p class="text-muted">You haven't written any reviews yet.</p>
+            @endforelse
+        </div>
+
+        {{-- Ratings Section --}}
+        <div class="mb-5">
+            <h4 class="mb-3">Your Ratings</h4>
+
+            @forelse ($user->ratings as $rating)
+                <div class="card mb-2 shadow-sm">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                            <a href="{{ route('albums.show', $review->album) }}" class="text-decoration-none text-dark">
+                                <strong>{{ $rating->album->title }}</strong><br>
+                            </a>
+                        <span class="fs-5 text-primary">{{ $rating->score }}/10</span>
+                    </div>
+                </div>
+            @empty
+                <p class="text-muted">You haven't rated any albums yet.</p>
+            @endforelse
+        </div>
+
     </div>
 </x-layout>

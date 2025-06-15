@@ -1,6 +1,17 @@
 <nav class="navbar">
     <a href="{{ route('artists.index') }}">Home</a>
     <ul>
+        <li class="nav-item">
+            @foreach($available_locales as $locale_name => $available_locale)
+                @if($available_locale === $current_locale)
+                    <span>{{ $locale_name }}</span>
+                @else
+                    <a href="{{ route('locale.switch',  $available_locale) }}">
+                        <span>{{ $locale_name }}</span>
+                    </a>
+                @endif
+            @endforeach
+        </li>
         @auth
             <li class="nav-item">
                 <a href="{{ route('users.index') }}">Profile</a>

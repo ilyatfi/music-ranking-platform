@@ -1,19 +1,28 @@
-<x-layout title="Artists">
-    <div class="container">
-        <form method="GET" action="{{ route('artists.index') }}">
-            <input type="text" name="search" placeholder="Search artists.." value="{{ $search }}">
-            <button type="submit">Search</button>
-        </form>
+<x-layout>
+    <x-slot name="title">Artists</x-slot>
 
-        <h2>Artists</h2>
-        <ul>
-            @foreach ($artists as $artist)
-                <li>
-                    <a href="{{ route('artists.show', $artist) }}">{{ $artist->stage_name }}</a>
-                </li>
-            @endforeach
-        </ul>
+    {{-- Featured Artist Blocks --}}
+    <div class="mb-5">
+        @foreach ($artists->take(2) as $artist)
+            <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-dark">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-circle me-3" style="width: 80px; height: 80px; background-color: #eee;"></div>
+                    <div class="flex-grow-1 border p-3">
+                        <strong>{{ $artist->stage_name }}</strong><br>
+                        <small class="text-muted">{{ $artist->bio }}</small>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+    </div>
 
-        {{ $artists->links() }}
+    {{-- Circular Artist Grid --}}
+    <div class="d-flex justify-content-start flex-wrap gap-4 mb-5">
+        @foreach ($artists->slice(2, 8) as $artist)
+            <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-center text-dark">
+                <div class="rounded-circle mx-auto border" style="width: 80px; height: 80px; background-color: #f0f0f0;"></div>
+                <div class="mt-2 small">{{ $artist->stage_name }}</div>
+            </a>
+        @endforeach
     </div>
 </x-layout>

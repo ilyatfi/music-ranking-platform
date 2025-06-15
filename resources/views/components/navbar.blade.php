@@ -47,7 +47,11 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountMenu">
                         <li><a class="dropdown-item" href="{{ route('users.index') }}">{{ __('My Profile') }}</a></li>
                         @if(auth()->user()->isAdmin())
-                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Admin Panel') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Moderate Reviews') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('artists.create') }}">{{ __('Add Artist') }}</a></li>
+                        @endif
+                        @if(auth()->user()->isArtist())
+                            <li><a class="dropdown-item" href="{{ route('albums.create') }}">{{ __('Add Album') }}</a></li>
                         @endif
                         <li><hr class="dropdown-divider"></li>
                         <li>

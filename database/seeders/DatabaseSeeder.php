@@ -33,6 +33,18 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
         ]);
+        User::factory()
+            ->has(
+                Artist::factory()
+                    ->hasAlbums(3)
+            )->create([
+                'username' => 'artist',
+                'email' => 'artist@artist.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+                'remember_token' => Str::random(10),
+                'role' => 'artist',
+            ]);
 
         User::factory()
             ->count(5)

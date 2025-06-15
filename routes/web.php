@@ -19,9 +19,16 @@ Route::get('/', function () {
 });
 
 Route::middleware(['setLocaleFromSession'])->group(function () {
+
+    Route::get('/admin/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+    Route::post('/admin/artists', [ArtistController::class, 'store'])->name('artists.store');
     Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
     Route::get('/artists/{artist}', [ArtistController::class, 'show'])->name('artists.show');
+
+    Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
+    Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
     Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
+
     Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::post('/albums/{album}/ratings', [RatingController::class, 'store'])->name('ratings.store');
     Route::put('/albums/{album}/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');

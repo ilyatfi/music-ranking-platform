@@ -1,6 +1,6 @@
 <x-layout title="Admin">
     <div class="container">
-        <h2 class="mb-4">{{ __('Admin Panel: Moderate Reviews') }}</h2>
+        <h2 class="mb-4">{{ __('Moderate Reviews') }}</h2>
 
         @forelse ($reviews as $review)
             <div class="card mb-4 shadow-sm">

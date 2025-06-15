@@ -10,6 +10,8 @@ class Artist extends Model
     /** @use HasFactory<\Database\Factories\ArtistFactory> */
     use HasFactory;
 
+    protected $fillable = ['user_id', 'stage_name', 'bio'];
+
     public function user() {
         return $this->belongsTo(User::class);
     }

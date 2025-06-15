@@ -63,8 +63,8 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function isRegularUser(): bool
+    public function isArtist(): bool
     {
-        return $this->role === 'user';
+        return $this->role === 'artist';
     }
 }

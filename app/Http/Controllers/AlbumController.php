@@ -20,7 +20,11 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        if (!auth()->user()->isArtist()) {
+            abort(403, 'Only artists can add albums.');
+        }
+
+        return view('albums.create');
     }
 
     /**
@@ -28,7 +32,33 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!auth()->user()->isArtist()) {
+            abort(403, 'Only artists can add albums.');
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'release_date' => 'required|date',
+            'genre' => 'required|string|max:255',
+        ]);
+
+        $artist = auth()->user()->artist;
+
+        if (!$artist) {
+            return redirect()->back()->with('error', 'You must have an artist profile to add albums.');
+        }
+        if ($artist->albums()->where('title', $request->title)->exists()) {
+            return redirect()->back()->with('error', 'An album with this title already exists for this artist.');
+        }
+
+        $album = new Album();
+        $album->title = $request->title;
+        $album->genre = $request->genre;
+        $album->release_date = $request->release_date;
+        $album->artist_id = $artist->id;
+        $album->save();
+
+        return redirect()->route('artists.show', $artist)->with('success', 'Album added successfully.');
     }
 
     /**

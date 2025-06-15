@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends Controller
 {
@@ -20,20 +22,39 @@ class ArtistController extends Controller
         return view('artists.index', compact('artists', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        if (!Auth::user() || !Auth::user()->isAdmin())
+        {
+            abort(403, 'Access denied');
+        }
+        $users = User::all();
+        return view('artists.create', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        if (!Auth::user() || !Auth::user()->isAdmin())
+        {
+            abort(403, 'Access denied');
+        }
+
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'stage_name' => 'required|string|max:255',
+            'bio' => 'nullable|string',
+        ]);
+
+        Artist::create($validated);
+
+        // update user role to 'artist'
+        $user = User::find($validated['user_id']);
+        if ($user->role !== 'artist') {
+            $user->role = 'artist';
+            $user->save();
+        }
+
+        return redirect()->route('artists.create')->with('success', 'Artist created successfully!');
     }
 
     /**

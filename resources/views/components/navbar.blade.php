@@ -10,7 +10,7 @@
 
             <form method="GET" action="{{ route('artists.index') }}" class="flex-grow-1 me-3">
                 <div class="input-group">
-                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search artists or albums...">
+                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search artists...">
                     <button class="btn btn-outline-secondary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>

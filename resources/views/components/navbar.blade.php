@@ -21,6 +21,17 @@
         {{-- Right: Language + Account --}}
         <div class="d-flex align-items-center">
             <button class="btn btn-outline-dark me-3">EN <i class="bi bi-caret-down-fill"></i></button>
+            <li class="nav-item">
+                @foreach($available_locales as $locale_name => $available_locale)
+                    @if($available_locale === $current_locale)
+                        <span>{{ $locale_name }}</span>
+                    @else
+                        <a href="{{ route('locale.switch',  $available_locale) }}">
+                            <span>{{ $locale_name }}</span>
+                        </a>
+                    @endif
+                @endforeach
+            </li>
 
             @auth
                 <div class="dropdown">

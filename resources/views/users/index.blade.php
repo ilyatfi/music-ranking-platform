@@ -30,7 +30,7 @@
             @forelse ($user->ratings as $rating)
                 <div class="card mb-2 shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
-                            <a href="{{ route('albums.show', $review->album) }}" class="text-decoration-none text-dark">
+                            <a href="{{ route('albums.show', $rating->album) }}" class="text-decoration-none text-dark">
                                 <strong>{{ $rating->album->title }}</strong><br>
                             </a>
                         <span class="fs-5 text-primary">{{ $rating->score }}/10</span>

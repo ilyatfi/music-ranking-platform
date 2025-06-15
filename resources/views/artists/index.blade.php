@@ -21,7 +21,7 @@
     @endphp
 
     {{-- Artist Grid --}}
-    @if($artist->count() > 8)
+    @if($artists->count() > 8)
         @foreach (range(0, $otherRows) as $i)
             <div class="d-flex justify-content-between flex-wrap px-3">
                 @foreach ($artists->slice(2 + $otherRows*6, 6) as $artist)

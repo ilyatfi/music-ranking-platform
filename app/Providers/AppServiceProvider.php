@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('components.navbar', function ($view) {
             $view->with('current_locale', app()->getLocale());
             $view->with('available_locales', config('app.available_locales'));
+            $view->with('search', request()->input('search', ''));
         });
     }
 }

@@ -21,7 +21,7 @@
         {{-- Right: Language + Account --}}
         <div class="d-flex align-items-center">
             <div class="dropdown me-3">
-                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="localeDropdown" data-bs-toggle="dropdown" aria-expanded="false">EN                </button>
+                <button class="btn btn-outline-dark dropdown-toggle text-uppercase" type="button" id="localeDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ $current_locale }}  </button>
                 <ul class="dropdown-menu" aria-labelledby="localeDropdown">
                     @foreach($available_locales as $locale_name => $available_locale)
                         @if($available_locale === $current_locale)

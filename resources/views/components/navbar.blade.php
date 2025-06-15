@@ -20,18 +20,23 @@
 
         {{-- Right: Language + Account --}}
         <div class="d-flex align-items-center">
-            <button class="btn btn-outline-dark me-3">EN <i class="bi bi-caret-down-fill"></i></button>
-            <li class="nav-item">
-                @foreach($available_locales as $locale_name => $available_locale)
-                    @if($available_locale === $current_locale)
-                        <span>{{ $locale_name }}</span>
-                    @else
-                        <a href="{{ route('locale.switch',  $available_locale) }}">
-                            <span>{{ $locale_name }}</span>
-                        </a>
-                    @endif
-                @endforeach
-            </li>
+            <div class="dropdown me-3">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="localeDropdown" data-bs-toggle="dropdown" aria-expanded="false">EN                </button>
+                <ul class="dropdown-menu" aria-labelledby="localeDropdown">
+                    @foreach($available_locales as $locale_name => $available_locale)
+                        @if($available_locale === $current_locale)
+                            <li><span class="dropdown-item active">{{ $locale_name }}</span></li>
+                        @else
+                            <li>
+                                <a class="dropdown-item" href="{{ route('locale.switch', $available_locale) }}">
+                                    {{ $locale_name }}
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+
 
             @auth
                 <div class="dropdown">

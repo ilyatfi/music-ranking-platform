@@ -1,7 +1,8 @@
 <form action="{{ $userRating
     ? route('ratings.update', ['album' => $album->id, 'rating' => $userRating->id])
     : route('ratings.store', ['album' => $album->id]) }}"
-    method="POST">
+    method="POST" class="mt-3">
+
     @csrf
     @if($userRating)
         @method('PUT')
@@ -9,18 +10,34 @@
 
     <input type="hidden" name="album_id" value="{{ $album->id }}">
 
-    <label for="score">Your Rating (1–10):</label>
-    <input type="number" name="score" id="score" min="1" max="10"
-           value="{{ old('score', $userRating->score ?? '') }}" required>
+    <div class="mb-3">
+        <label for="score" class="form-label">Your Rating (1–10):</label>
+        <div class="input-group">
+            <input type="number" name="score" id="score"
+                   class="form-control @error('score') is-invalid @enderror"
+                   min="1" max="10"
+                   value="{{ old('score', $userRating->score ?? '') }}"
+                   style="max-width: 100px;" required>
 
-    <button type="submit">{{ $userRating ? 'Update Rating' : 'Submit Rating' }}</button>
-</form>
-@if ($errors->any())
-    <div class="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+            <button type="submit" class="btn btn-primary">
+                {{ $userRating ? 'Update Rating' : 'Submit Rating' }}
+            </button>
+        </div>
+
+        @error('score')
+            <div class="invalid-feedback d-block">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
-@endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</form>

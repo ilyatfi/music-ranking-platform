@@ -1,7 +1,7 @@
 <x-layout title="Artists">
     <div class="container">
         <form method="GET" action="{{ route('artists.index') }}">
-            <input type="text" name="search" placeholder="Search artists..." value="{{ $search }}">
+            <input type="text" name="search" placeholder="Search artists.." value="{{ $search }}">
             <button type="submit">Search</button>
         </form>
 

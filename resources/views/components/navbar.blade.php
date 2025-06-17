@@ -51,7 +51,7 @@
                             <li><a class="dropdown-item" href="{{ route('admin.artists.index') }}">{{ __('Moderate Artists') }}</a></li>
                         @endif
                         @if(auth()->user()->isArtist())
-                            <li><a class="dropdown-item" href="{{ route('albums.create') }}">{{ __('Add Album') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('artist.albums.index') }}">{{ __('My Albums') }}</a></li>
                         @endif
                         <li><hr class="dropdown-divider"></li>
                         <li>

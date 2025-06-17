@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Middleware\SetLocaleFromSession;
 use App\Http\Controllers\Admin\ArtistAdminController;
+use App\Http\Controllers\ArtistAlbumController;
 
 Route::get('/', function () {
     return redirect()->route('artists.index');
@@ -31,6 +32,12 @@ Route::middleware(['setLocaleFromSession'])->group(function () {
 
     Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
     Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
+    
+    Route::get('/my-albums', [ArtistAlbumController::class, 'index'])->name('artist.albums.index');
+    Route::get('/my-albums/{album}/edit', [ArtistAlbumController::class, 'edit'])->name('artist.albums.edit');
+    Route::put('/my-albums/{album}', [ArtistAlbumController::class, 'update'])->name('artist.albums.update');
+    Route::delete('/my-albums/{album}', [ArtistAlbumController::class, 'destroy'])->name('artist.albums.destroy');
+
     Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
 
     Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');

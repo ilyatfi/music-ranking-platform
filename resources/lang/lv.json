@@ -41,11 +41,13 @@
   "Username": "Lietotājvārds",
   "Confirm Password": "Apstipriniet Paroli",
   "Already have an account?": "Vai jums jau ir konts?",
-  "Login here": "Piesakieties šeit",
-  "Create Account": "Izveidot kontu",
-  "Add New Album": "Pievienot jaunu albumu",
-  "Album Name": "Albuma nosaukums",
-  "Add Album": "Pievienot albumu",
+  "Login here": "Piesakieties Šeit",
+  "Create Account": "Izveidot Kontu",
+  "Add New Album": "Pievienot Jaunu Albumu",
+  "Album Name": "Albuma Nosaukums",
+  "Add Album": "Pievienot Albumu",
   "Genre": "Žanrs",
-  "Add Artist": "Pievienot artistu"
+  "Add Artist": "Pievienot Artistu",
+  "Create Artist": "Izveidot Artistu",
+  "Create New Artist": "Izveidot Jaunu Artistu"
 }

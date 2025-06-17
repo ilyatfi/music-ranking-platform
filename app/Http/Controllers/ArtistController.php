@@ -17,7 +17,7 @@ class ArtistController extends Controller
         $search = $request->input('search');
         $artists = Artist::when($search, function ($query, $search) {
             return $query->where('stage_name', 'like', "%{$search}%");
-        })->paginate(10);
+        })->orderBy('updated_at', 'desc')->get();
 
         return view('artists.index', compact('artists', 'search'));
     }

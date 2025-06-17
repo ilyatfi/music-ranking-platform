@@ -13,7 +13,7 @@
 
             {{-- User Select --}}
             <div class="mb-3">
-                <label for="user_id" class="form-label">{{ __('User') }}</label>
+                <label for="user_id" class="form-label fw-semibold">{{ __('User') }}</label>
                 <select name="user_id" id="user_id"
                         class="form-select @error('user_id') is-invalid @enderror"
                         required>
@@ -31,7 +31,7 @@
 
             {{-- Stage Name --}}
             <div class="mb-3">
-                <label for="stage_name" class="form-label">{{ __('Stage Name') }}</label>
+                <label for="stage_name" class="form-label fw-semibold">{{ __('Stage Name') }}</label>
                 <input type="text" name="stage_name" id="stage_name"
                        class="form-control @error('stage_name') is-invalid @enderror"
                        value="{{ old('stage_name') }}" required>
@@ -40,13 +40,27 @@
                 @enderror
             </div>
 
-            {{-- Profile Picture --}}
-            <label for="profile_picture">Profile Picture</label>
-            <input type="file" name="profile_picture">
+            <div class="mb-3">
+                <label for="profile_picture" class="form-label fw-semibold">{{ __('Profile Picture') }}</label>
+                <input type="file"
+                    name="profile_picture"
+                    id="profile_picture"
+                    class="form-control @error('profile_picture') is-invalid @enderror"
+                    accept="image/*">
+
+                @error('profile_picture')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <div class="form-text">Accepted formats: JPG, PNG. Max size: 2MB.</div>
+            </div>
+
 
             {{-- Bio --}}
             <div class="mb-3">
-                <label for="bio" class="form-label">{{ __('Bio') }}</label>
+                <label for="bio" class="form-label fw-semibold">{{ __('Bio') }}</label>
                 <textarea name="bio" id="bio" rows="4"
                           class="form-control @error('bio') is-invalid @enderror">{{ old('bio') }}</textarea>
                 @error('bio')

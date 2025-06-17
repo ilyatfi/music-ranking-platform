@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
         User::factory()
-            ->count(5)
+            ->count(15)
             ->has(
                 Artist::factory()
                     ->hasAlbums(3)

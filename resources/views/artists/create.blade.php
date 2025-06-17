@@ -2,13 +2,13 @@
     <div class="container">
         <h2 class="mb-4">{{ __('Create New Artist') }}</h2>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
-        <form method="POST" action="{{ route('artists.store') }}" class="card p-4 shadow-sm">
+        <form method="POST" action="{{ route('artists.store') }}" enctype="multipart/form-data" class="card p-4 shadow-sm">
             @csrf
 
             {{-- User Select --}}
@@ -20,7 +20,7 @@
                     <option value="" disabled selected>{{ __('User') }}</option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">
-                            {{ $user->name }} ({{ $user->email }})
+                            {{ $user->username }}
                         </option>
                     @endforeach
                 </select>
@@ -39,6 +39,10 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
+            {{-- Profile Picture --}}
+            <label for="profile_picture">Profile Picture</label>
+            <input type="file" name="profile_picture">
 
             {{-- Bio --}}
             <div class="mb-3">

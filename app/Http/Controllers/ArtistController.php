@@ -28,7 +28,10 @@ class ArtistController extends Controller
         {
             abort(403, 'Access denied');
         }
-        $users = User::all();
+        $users = User::where('role', '!=', 'artist')
+             ->whereDoesntHave('artist')
+             ->get();
+
         return view('artists.create', compact('users'));
     }
 
@@ -38,12 +41,30 @@ class ArtistController extends Controller
         {
             abort(403, 'Access denied');
         }
-
+        if (Artist::where('user_id', $request->user_id)->exists())
+        {
+            return redirect()->back()->with('error', 'This user already has an artist profile.');
+        }
+        if (!User::where('id', $request->user_id)->exists())
+        {
+            return redirect()->back()->with('error', 'User does not exist.');
+        }
+        if (User::find($request->user_id)->role === 'admin')
+        {
+            return redirect()->back()->with('error', 'This user is an admin and cannot be assigned as an artist.');
+        }
+        
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'stage_name' => 'required|string|max:255',
             'bio' => 'nullable|string',
+            'profile_picture' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('profile_picture')) {
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $validated['profile_picture'] = $path;
+        }
 
         Artist::create($validated);
 

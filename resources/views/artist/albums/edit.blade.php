@@ -2,7 +2,7 @@
     <div class="container">
 
         <h2 class="mb-4">
-            🎧 {{ __('Edit Album') }}: <span class="text-primary fw-semibold">{{ $album->title }}</span>
+            {{ __('Edit Album') }}: <span class="text-primary fw-semibold">{{ $album->title }}</span>
         </h2>
 
         <form action="{{ route('artist.albums.update', $album) }}"

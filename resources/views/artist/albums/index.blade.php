@@ -1,6 +1,6 @@
 <x-layout title="My Albums">
     <div class="container">
-        <h2 class="mb-4">🎶 {{ __('My Albums') }}</h2>
+        <h2 class="mb-4"> {{ __('My Albums') }}</h2>
 
         {{-- Flash message --}}
         @if(session('success'))

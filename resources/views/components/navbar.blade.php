@@ -41,8 +41,7 @@
             @auth
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="accountMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="me-2">{{ auth()->user()->username }}</span>
-                        <div class="rounded-circle border" style="width: 40px; height: 40px; background-color: #ccc;"></div>
+                        <span class="me-2" style="height: 40px; display: flex; justify-content: center; align-items: center;">{{ auth()->user()->username }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountMenu">
                         <li><a class="dropdown-item" href="{{ route('users.index') }}">{{ __('My Activity') }}</a></li>

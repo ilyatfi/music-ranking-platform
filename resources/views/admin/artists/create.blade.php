@@ -8,7 +8,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-        <form method="POST" action="{{ route('artists.store') }}" enctype="multipart/form-data" class="card p-4 shadow-sm">
+        <form method="POST" action="{{ route('admin.artists.store') }}" enctype="multipart/form-data" class="card p-4 shadow-sm">
             @csrf
 
             {{-- User Select --}}

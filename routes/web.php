@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Middleware\SetLocaleFromSession;
+use App\Http\Controllers\Admin\ArtistAdminController;
 
 Route::get('/', function () {
     return redirect()->route('artists.index');
@@ -20,8 +21,11 @@ Route::get('/', function () {
 
 Route::middleware(['setLocaleFromSession'])->group(function () {
 
-    Route::get('/admin/artists/create', [ArtistController::class, 'create'])->name('artists.create');
-    Route::post('/admin/artists', [ArtistController::class, 'store'])->name('artists.store');
+    Route::get('/admin/artists/create', [ArtistAdminController::class, 'create'])->name('admin.artists.create');
+    Route::post('/admin/artists', [ArtistAdminController::class, 'store'])->name('admin.artists.store');
+    Route::get('/admin/artists', [ArtistAdminController::class, 'index'])->name('admin.artists.index');
+    Route::delete('/admin/artists/{artist}', [ArtistAdminController::class, 'destroy'])->name('admin.artists.destroy');
+
     Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
     Route::get('/artists/{artist}', [ArtistController::class, 'show'])->name('artists.show');
 

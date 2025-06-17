@@ -26,7 +26,7 @@
             <div class="col-6 col-md-4 col-lg-2 mb-4 text-center">
                 <a href="{{ route('artists.show', $artist) }}" class="text-decoration-none text-dark artist-item">
                     @if ($artist->profile_picture)
-                        <img src="{{ asset('storage/' . $artist->profile_picture) }}" alt="Profile Picture" class="rounded-circle mx-auto border" style="width: 100px; min-width: 100px; height: 100px; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $artist->profile_picture) }}" alt="Profile Picture" class="rounded-circle mx-auto border" style="width: 100px; min-width: 100px; height: 100px; min-height: 100px; object-fit: cover;">
                     @else
                         <div class="rounded-circle mx-auto border" style="width: 100px; min-width: 100px; height: 100px; background-color: #f0f0f0;"></div>
                     @endif

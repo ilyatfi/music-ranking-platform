@@ -53,5 +53,9 @@
   "User": "Lietotājs",
   "Stage Name": "Skatuves Vārds",
   "Bio": "Biogrāfija",
-  "Profile Picture": "Profila Attēls"
+  "Profile Picture": "Profila Attēls",
+  "Moderate Artists": "Artistu moderēšana",
+  "All Artists": "Visi Artisti",
+  "Are you sure you want to delete this artist?": "Vai tiešām vēlaties dzēst šo artistu?",
+  "User Name": "Lietotājvārds"
 }

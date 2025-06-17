@@ -4,6 +4,13 @@
     <h2>{{ $artist->stage_name }}</h2>
     <p class="text-muted">{{ __('Artist Profile') }}</p>
 
+    @if ($artist->bio)
+        <div class="mb-4 p-3 bg-light">
+            <h5 class="mb-2">{{ __('Biography') }}</h5>
+            <p class="mb-0">{{ $artist->bio }}</p>
+        </div>
+    @endif
+
     <h4 class="mt-4">{{ __('Albums') }}</h4>
 
     @forelse ($albums as $album)

@@ -1,35 +1,69 @@
 <x-layout title="Create Artist">
-    <h2>{{ __('Create New Artist') }}</h2>
+    <div class="container">
+        <h2 class="mb-4">{{ __('Create New Artist') }}</h2>
 
-    @if (session('success'))
-        <div>{{ session('success') }}</div>
-    @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <form method="POST" action="{{ route('artists.store') }}">
-        @csrf
+        <form method="POST" action="{{ route('artists.store') }}" class="card p-4 shadow-sm">
+            @csrf
 
-        <label>User:</label>
-        <select name="user_id" required>
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
-            @endforeach
-        </select>
+            {{-- User Select --}}
+            <div class="mb-3">
+                <label for="user_id" class="form-label">{{ __('User') }}</label>
+                <select name="user_id" id="user_id"
+                        class="form-select @error('user_id') is-invalid @enderror"
+                        required>
+                    <option value="" disabled selected>{{ __('User') }}</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}">
+                            {{ $user->name }} ({{ $user->email }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('user_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <label>Stage Name:</label>
-        <input type="text" name="stage_name" required>
+            {{-- Stage Name --}}
+            <div class="mb-3">
+                <label for="stage_name" class="form-label">{{ __('Stage Name') }}</label>
+                <input type="text" name="stage_name" id="stage_name"
+                       class="form-control @error('stage_name') is-invalid @enderror"
+                       value="{{ old('stage_name') }}" required>
+                @error('stage_name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <label>Bio:</label>
-        <textarea name="bio"></textarea>
+            {{-- Bio --}}
+            <div class="mb-3">
+                <label for="bio" class="form-label">{{ __('Bio') }}</label>
+                <textarea name="bio" id="bio" rows="4"
+                          class="form-control @error('bio') is-invalid @enderror">{{ old('bio') }}</textarea>
+                @error('bio')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <button type="submit">{{ __('Create Artist') }}</button>
-    </form>
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            {{-- Submit --}}
+            <button type="submit" class="btn btn-primary">
+                {{ __('Create Artist') }}
+            </button>
+        </form>
+
+        @if ($errors->any())
+            <div class="alert alert-danger mt-4">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 </x-layout>

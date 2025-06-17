@@ -7,7 +7,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <form method="POST" action="{{ route('artists.store') }}">
+    <form method="POST" action="{{ route('artists.store') }}" enctype="multipart/form-data">
         @csrf
 
         <label>User:</label>
@@ -19,6 +19,10 @@
 
         <label>Stage Name:</label>
         <input type="text" name="stage_name" required>
+
+        
+        <label for="profile_picture">Profile Picture</label>
+        <input type="file" name="profile_picture">
 
         <label>Bio:</label>
         <textarea name="bio"></textarea>

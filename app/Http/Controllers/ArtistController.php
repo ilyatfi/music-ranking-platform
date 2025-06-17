@@ -53,12 +53,18 @@ class ArtistController extends Controller
         {
             return redirect()->back()->with('error', 'This user is an admin and cannot be assigned as an artist.');
         }
-
+        
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'stage_name' => 'required|string|max:255',
             'bio' => 'nullable|string',
+            'profile_picture' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('profile_picture')) {
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $validated['profile_picture'] = $path;
+        }
 
         Artist::create($validated);
 

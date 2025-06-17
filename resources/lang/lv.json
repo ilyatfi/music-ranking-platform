@@ -64,5 +64,9 @@
   "Title": "Nosaukums",
   "Actions": "Darbības",
   "Are you sure?": "Vai esat pārliecināts?",
-  "Edit": "Rediģēt"
+  "Edit": "Rediģēt",
+  "My Activity": "Mana Aktivitāte",
+  "Review deleted successfully.": "Atsauksme veiksmīgi izdzēsta.",
+  "Album deleted successfully.": "Albums veiksmīgi izdzēsts.",
+  "Artist deleted successfully.": "Artists veiksmīgi izdzēsts."
 }

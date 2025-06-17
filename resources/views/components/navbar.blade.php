@@ -45,7 +45,7 @@
                         <div class="rounded-circle border" style="width: 40px; height: 40px; background-color: #ccc;"></div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountMenu">
-                        <li><a class="dropdown-item" href="{{ route('users.index') }}">{{ __('My Profile') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.index') }}">{{ __('My Activity') }}</a></li>
                         @if(auth()->user()->isAdmin())
                             <li><a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Moderate Reviews') }}</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.artists.index') }}">{{ __('Moderate Artists') }}</a></li>

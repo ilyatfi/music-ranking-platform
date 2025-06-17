@@ -39,9 +39,16 @@ class ArtistAdminController extends Controller
             abort(403, 'Access denied');
         }
 
+        $user = $artist->user;
+
         $artist->delete();
 
-        return redirect()->route('admin.artists.index')->with('success', 'Artist removed successfully.');
+        if (!$user->artist) {
+            $user->role = 'user';
+            $user->save();
+        }
+
+        return redirect()->route('admin.artists.index')->with('success', __('Artist deleted successfully.'));
     }
 
     public function store(Request $request)

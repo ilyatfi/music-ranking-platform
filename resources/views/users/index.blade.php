@@ -1,7 +1,7 @@
-<x-layout title="Profile">
+<x-layout title="My Activity">
     <div class="container">
 
-        <h2 class="mb-4">{{ __('Profile') }}: {{ $user->username }}</h2>
+        <h2 class="mb-4">{{ __('My Activity') }}</h2>
 
         {{-- Reviews Section --}}
         <div class="mb-5">

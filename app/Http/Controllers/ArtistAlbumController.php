@@ -10,6 +10,10 @@ class ArtistAlbumController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()->isArtist()) {
+            abort(403, 'You must be an artist to manage albums.');
+        }
+
         $albums = Album::where('artist_id', Auth::user()->artist?->id)->get();
 
         return view('artist.albums.index', compact('albums'));

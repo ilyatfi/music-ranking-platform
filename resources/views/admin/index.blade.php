@@ -1,6 +1,10 @@
 <x-layout title="Admin">
     <div class="container">
         <h2 class="mb-4">{{ __('Moderate Reviews') }}</h2>
+        
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
         @forelse ($reviews as $review)
             <div class="card mb-4 shadow-sm">

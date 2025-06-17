@@ -27,6 +27,6 @@ class AdminController extends Controller
         }
         
         $review->delete();
-        return back()->with('success', 'Review deleted.');
+        return back()->with('success', __('Review deleted successfully.'));
     }
 }
